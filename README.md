@@ -78,26 +78,25 @@ Other useful commands from a normal shell (not inside tmux):
 
 CAUTION: `kill-session` stops every agent in that session. Use `Ctrl-b` then `d` when you want the agents to continue.
 
-## Agent programs on this machine
+## Preferred agent commands
 
 Start one agent in one window. Type the command. Then press `Enter`.
 
-| Agent | Command |
+| Tool | Command |
 |---|---|
-| Hermes | `hermes` |
-| Claude Code | `claude` |
-| Grok Build | `grok` |
-| Codex | `codex` |
-| Pi | `pi` |
+| Hermes harness | `hermes` |
+| Pi harness | `pi` |
+| OpenAI Codex CLI | `codex` |
+| Google Antigravity | `agy` |
 
-Name the window after the agent. After you open the window, press `Ctrl-b` then `,`. Type `hermes` or `claude`. Then press `Enter`.
+Name the window after the agent. After you open the window, press `Ctrl-b` then `,`. Type `hermes`, `pi`, `codex`, or `agy`. Then press `Enter`.
 
 ## Everyday workflow
 
 1. Start or return: `tmux new -A -s agents`
 2. Create a window: `Ctrl-b` then `c`
 3. Name the window: `Ctrl-b` then `,`
-4. Start the agent: `hermes` (or `claude`, `grok`, `codex`, `pi`)
+4. Start the agent: `hermes`, `pi`, `codex`, or `agy`
 5. Switch windows: `Ctrl-b` then `n`, or `p`, or a number
 6. Leave: `Ctrl-b` then `d`
 7. Return later: `tmux new -A -s agents`
@@ -107,8 +106,9 @@ Name the window after the agent. After you open the window, press `Ctrl-b` then 
 ```text
 agents session
 ├── hermes     main Hermes chat
-├── claude     Claude Code
-├── grok       Grok Build
+├── pi         Pi chat
+├── codex      OpenAI Codex CLI
+├── agy        Google Antigravity
 ├── shell      normal shell for commands
 └── notes      scratch text
 ```
@@ -173,7 +173,7 @@ set -g extended-keys on
 set -g extended-keys-format csi-u
 ```
 
-This needs tmux 3.5 or later. This machine has tmux 3.5a.
+The `extended-keys-format` option requires tmux 3.5 or later.
 
 ## Why this sheet is short
 
@@ -182,27 +182,30 @@ Beginner tmux guides agree on one teaching order:
 1. Teach the three layers first. A session holds windows. A window holds panes. ([tmux wiki](https://github.com/tmux/tmux/wiki/Getting-Started), [Linux Handbook](https://linuxhandbook.com/tmux/))
 2. Teach the prefix as two steps, not one combined key hold. Press `Ctrl-b`. Release. Then press the action key. ([Linux Handbook prefix lesson](https://linuxhandbook.com/courses/tmux/tmux-essential-shortcuts/))
 3. Treat a session as a workspace that you join, not as extra tabs. ([Sebasblog tmux guide](https://sebasblog.com/p/the-ultimate-guide-to-tmux-supercharge-your-terminal-productivity/))
-4. Put each agent in a named window. Do not start with a grid of panes. ([Fazm](https://fazm.ai/blog/running-multiple-ai-agents-tmux-workflow), [Code Agent Swarm](https://www.codeagentswarm.com/en/guides/run-multiple-claude-code-sessions))
+4. Put each agent in a named window. Do not start with a grid of panes.
 
 This sheet follows that order. It hides shell recipes and extra keys until the daily path is stable.
 
 ## License
 
-Copyright (c) 2026 kairin.
+Copyright (c) 2026 tmux-cheat-sheet contributors.
 
 This sheet uses [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/). See [LICENSE](LICENSE).
 
-You can copy, share, and change this sheet if all of these are true:
+The license permits you to copy, share, and adapt this sheet under these terms:
 
-- You give credit to the author.
+- You give appropriate credit and link to the license.
+- You identify your changes.
 - You do not use the sheet for commercial gain.
-- You share your changes under the same license.
+- You use the same license for adapted material.
 
-This license applies to this sheet. It does not control other programs that you write after you read the sheet.
+This list is a summary. Read the license text for the complete terms.
+
+The license applies to this sheet. It does not apply to programs that you write after you read the sheet.
 
 ## Notes and updates
 
 | Date | Change |
 |---|---|
 | 2026-09-12 | Change the license from MIT to CC BY-NC-SA 4.0. |
-| 2026-09-12 | First public version. Short daily path. Agent table for Hermes, Claude Code, Grok, Codex, and Pi. |
+| 2026-09-12 | Update the preferred-agent examples and public attribution. |
