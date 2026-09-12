@@ -186,8 +186,23 @@ Beginner tmux guides agree on one teaching order:
 
 This sheet follows that order. It hides shell recipes and extra keys until the daily path is stable.
 
+## License
+
+Copyright (c) 2026 kairin.
+
+This sheet uses [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/). See [LICENSE](LICENSE).
+
+You can copy, share, and change this sheet if all of these are true:
+
+- You give credit to the author.
+- You do not use the sheet for commercial gain.
+- You share your changes under the same license.
+
+This license applies to this sheet. It does not control other programs that you write after you read the sheet.
+
 ## Notes and updates
 
 | Date | Change |
 |---|---|
+| 2026-09-12 | Change the license from MIT to CC BY-NC-SA 4.0. |
 | 2026-09-12 | First public version. Short daily path. Agent table for Hermes, Claude Code, Grok, Codex, and Pi. |
