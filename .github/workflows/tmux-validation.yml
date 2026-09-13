@@ -19,7 +19,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if rg -n -i --hidden --glob '!.git/**' --glob '!.github/workflows/tmux-validation.yml' '(claude|anthropic)' .; then
+          if grep -RIn -i --exclude-dir=.git --exclude=tmux-validation.yml -E '(claude|anthropic)' .; then
             echo 'Active provider-specific references found.' >&2
             exit 1
           fi
@@ -43,8 +43,8 @@ jobs:
           test -s AGENTS.md
           test -L GEMINI.md
           test "$(readlink GEMINI.md)" = AGENTS.md
-          rg -q 'tmux' README.md
-          rg -q 'Hermes harness' README.md
-          rg -q 'Pi harness' README.md
-          rg -q 'OpenAI Codex CLI' README.md
-          rg -q 'Google Antigravity' README.md
+          grep -q 'tmux' README.md
+          grep -q 'Hermes harness' README.md
+          grep -q 'Pi harness' README.md
+          grep -q 'OpenAI Codex CLI' README.md
+          grep -q 'Google Antigravity' README.md
