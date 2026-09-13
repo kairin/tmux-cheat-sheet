@@ -1,0 +1,50 @@
+name: tmux-validation
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  repository-contract:
+    name: repository-contract
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Reject active provider-specific references
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -RIn -i --exclude-dir=.git --exclude=tmux-validation.yml -E '(claude|anthropic)' .; then
+            echo 'Active provider-specific references found.' >&2
+            exit 1
+          fi
+
+      - name: Check tracked symlinks
+        shell: bash
+        run: |
+          set -euo pipefail
+          while IFS= read -r entry; do
+            path=${entry#*$'\t'}
+            if [[ ! -e "$path" ]]; then
+              echo "Broken tracked symlink: $path" >&2
+              exit 1
+            fi
+          done < <(git ls-files -s | awk '$1 == 120000')
+
+      - name: Check required workspace guidance
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s AGENTS.md
+          test -L GEMINI.md
+          test "$(readlink GEMINI.md)" = AGENTS.md
+          grep -q 'tmux' README.md
+          grep -q 'Hermes harness' README.md
+          grep -q 'Pi harness' README.md
+          grep -q 'OpenAI Codex CLI' README.md
+          grep -q 'Google Antigravity' README.md
